@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
 
         Instance = this;
         _playerInput = GetComponent<PlayerInput>();
+        _playerInput.onActionTriggered += OnActionTriggered;
     }
 
     private void OnEnable()
@@ -46,6 +47,7 @@ public class InputManager : MonoBehaviour
     // Il nome "OnActionTriggered" e' una convenzione richiesta da Unity: non cambiarlo.
     public void OnActionTriggered(InputAction.CallbackContext ctx)
     {
+        Debug.Log($"Action triggered: {ctx.action.name}, phase: {ctx.phase}");
         switch (ctx.action.name)
         {
             case "Steer":
@@ -66,6 +68,14 @@ public class InputManager : MonoBehaviour
             case "ToggleSlowMotion":
                 if (ctx.started) OnToggleSlowMotion?.Invoke();
                 break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_playerInput != null)
+        {
+            _playerInput.onActionTriggered -= OnActionTriggered;
         }
     }
 }

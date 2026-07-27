@@ -37,8 +37,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "bd56138c-ee0e-4279-8663-aa55086e0fab",
-                    "path": "<Keyboard>/leftCtrl",
+                    "id": "5d2f85d8-3a32-4ac5-ba2b-ed681fdfe624",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -48,12 +48,12 @@
                 },
                 {
                     "name": "",
-                    "id": "cb8e0a9e-2f39-45bc-870f-522e99a17782",
-                    "path": "",
+                    "id": "bd56138c-ee0e-4279-8663-aa55086e0fab",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Steer",
+                    "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

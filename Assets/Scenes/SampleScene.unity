@@ -128,10 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 125878440}
-  - component: {fileID: 125878442}
   - component: {fileID: 125878441}
-  m_Layer: 0
-  m_Name: KartPrefab
+  m_Layer: 6
+  m_Name: KartVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,8 +150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543450652439711654}
-  - {fileID: 2010026335}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1078454497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &125878441
 MonoBehaviour:
@@ -163,57 +161,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 125878439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2be2f07dfa408e4d9ecd3e4079075a4, type: 3}
+  m_Script: {fileID: 11500000, guid: e35a1fe2ad55c104f81198cb14ec675f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KartController
+  m_EditorClassIdentifier: Assembly-CSharp::KartSimpleController
   kartModel: {fileID: 543450652439711654}
-  kartNormal: {fileID: 125878440}
-  sphere: {fileID: 125878442}
-  primaryParticles:
-  - {fileID: 0}
-  secondaryParticles: []
-  drifting: 0
+  sphere: {fileID: 2010026337}
   acceleration: 30
   steering: 80
   gravity: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  frontWheels: {fileID: 359047587}
-  backWheels: {fileID: 508273729}
-  steeringWheel: {fileID: 5138699260438663753}
-  wheelParticles: {fileID: 0}
-  flashParticles: {fileID: 0}
-  turboColors: []
-  impulseSource: {fileID: 0}
-  postProcessingVolume: {fileID: 0}
---- !u!54 &125878442
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125878439}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  driftTiltAmount: 15
+  boostThresholds:
+  - 50
+  - 100
+  - 150
+  boostSpeedMultiplier:
+  - 1.3
+  - 1.6
+  - 2
+  boostDurationPerLevel: 0.3
 --- !u!1 &215982992
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +189,8 @@ GameObject:
   m_Component:
   - component: {fileID: 215982994}
   - component: {fileID: 215982993}
+  - component: {fileID: 215982996}
+  - component: {fileID: 215982995}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -282,13 +249,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215982992}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.16245984, y: 0.688191, z: -0.16245985, w: 0.688191}
+  m_LocalPosition: {x: -10.000001, y: 5, z: 0.0000011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &215982995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215982992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
+  LookAtOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &215982996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215982992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
+  TrackerSettings:
+    BindingMode: 3
+    PositionDamping: {x: 1, y: 1, z: 1}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  FollowOffset: {x: 0, y: 5, z: -10}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,13 +375,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.16245984, y: 0.688191, z: -0.16245985, w: 0.688191}
+  m_LocalPosition: {x: -10.000001, y: 5, z: 0.0000011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -92.716, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.03, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359047587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontWheeles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,8 +503,8 @@ GameObject:
   - component: {fileID: 403909352}
   - component: {fileID: 403909351}
   - component: {fileID: 403909350}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 7
+  m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -740,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 508273729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BackWheeles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,6 +812,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1078454496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1078454497}
+  m_Layer: 6
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1078454497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078454496}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 125878440}
+  - {fileID: 2010026335}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1710883222
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -870,7 +902,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: 79a48418-1304-4147-9538-c0fc9ae81f2d
+  m_DefaultActionMap: Kart
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &1710883225
@@ -898,8 +930,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2010026335}
   - component: {fileID: 2010026336}
-  m_Layer: 0
-  m_Name: Collider
+  - component: {fileID: 2010026337}
+  m_Layer: 6
+  m_Name: ShpereCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -913,12 +946,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010026334}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 125878440}
+  m_Father: {fileID: 1078454497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2010026336
 SphereCollider:
@@ -941,6 +974,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2010026337
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010026334}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &312131911822335386
 Transform:
   m_ObjectHideFlags: 0
@@ -1035,7 +1095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450652439711654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KartModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1121,7 @@ GameObject:
   - component: {fileID: 7921116254703577595}
   - component: {fileID: 4154135146087711669}
   - component: {fileID: 5775308184718562571}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightTube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1139,7 @@ GameObject:
   - component: {fileID: 5396364996903137436}
   - component: {fileID: 3352715047946251810}
   - component: {fileID: 7120643504129692801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftBackWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1219,7 +1279,7 @@ GameObject:
   - component: {fileID: 4715264723532002502}
   - component: {fileID: 5288190378615018960}
   - component: {fileID: 9050817488948711567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftFrontWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1297,7 @@ GameObject:
   - component: {fileID: 5508666929017822948}
   - component: {fileID: 6918779321775359045}
   - component: {fileID: 6841003677090471084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightBackWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1432,7 @@ GameObject:
   - component: {fileID: 312131911822335386}
   - component: {fileID: 6114882254864530326}
   - component: {fileID: 848915934157550956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftTube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1527,7 +1587,7 @@ GameObject:
   - component: {fileID: 8712061106121535685}
   - component: {fileID: 6551726143494332165}
   - component: {fileID: 8424073626439350268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CarBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,7 +1620,7 @@ GameObject:
   - component: {fileID: 7495113020857665652}
   - component: {fileID: 1105013368314904362}
   - component: {fileID: 3765108853574693108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightFrontWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1627,7 +1687,7 @@ GameObject:
   - component: {fileID: 5138699260438663753}
   - component: {fileID: 4299754947242908612}
   - component: {fileID: 4431670452931570979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SteeringWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1708,4 +1768,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1710883225}
   - {fileID: 403909353}
-  - {fileID: 125878440}
+  - {fileID: 1078454497}
