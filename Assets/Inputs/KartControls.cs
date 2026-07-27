@@ -102,6 +102,15 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Reverse"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffa3ddab-cb0f-42fc-905e-3c4ff9049cb9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Steer"",
                     ""type"": ""Value"",
                     ""id"": ""bd9d6cb2-9f70-4a11-83f0-f90059708864"",
@@ -184,6 +193,17 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fd6f615-68c6-4a0d-a8c0-155939704ddf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reverse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -284,6 +304,7 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
         // Kart
         m_Kart = asset.FindActionMap("Kart", throwIfNotFound: true);
         m_Kart_Accelerate = m_Kart.FindAction("Accelerate", throwIfNotFound: true);
+        m_Kart_Reverse = m_Kart.FindAction("Reverse", throwIfNotFound: true);
         m_Kart_Steer = m_Kart.FindAction("Steer", throwIfNotFound: true);
         m_Kart_Drift = m_Kart.FindAction("Drift", throwIfNotFound: true);
         // Debug
@@ -371,6 +392,7 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Kart;
     private List<IKartActions> m_KartActionsCallbackInterfaces = new List<IKartActions>();
     private readonly InputAction m_Kart_Accelerate;
+    private readonly InputAction m_Kart_Reverse;
     private readonly InputAction m_Kart_Steer;
     private readonly InputAction m_Kart_Drift;
     /// <summary>
@@ -388,6 +410,10 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Kart/Accelerate".
         /// </summary>
         public InputAction @Accelerate => m_Wrapper.m_Kart_Accelerate;
+        /// <summary>
+        /// Provides access to the underlying input action "Kart/Reverse".
+        /// </summary>
+        public InputAction @Reverse => m_Wrapper.m_Kart_Reverse;
         /// <summary>
         /// Provides access to the underlying input action "Kart/Steer".
         /// </summary>
@@ -425,6 +451,9 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
             @Accelerate.started += instance.OnAccelerate;
             @Accelerate.performed += instance.OnAccelerate;
             @Accelerate.canceled += instance.OnAccelerate;
+            @Reverse.started += instance.OnReverse;
+            @Reverse.performed += instance.OnReverse;
+            @Reverse.canceled += instance.OnReverse;
             @Steer.started += instance.OnSteer;
             @Steer.performed += instance.OnSteer;
             @Steer.canceled += instance.OnSteer;
@@ -445,6 +474,9 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
             @Accelerate.started -= instance.OnAccelerate;
             @Accelerate.performed -= instance.OnAccelerate;
             @Accelerate.canceled -= instance.OnAccelerate;
+            @Reverse.started -= instance.OnReverse;
+            @Reverse.performed -= instance.OnReverse;
+            @Reverse.canceled -= instance.OnReverse;
             @Steer.started -= instance.OnSteer;
             @Steer.performed -= instance.OnSteer;
             @Steer.canceled -= instance.OnSteer;
@@ -659,6 +691,13 @@ public partial class @KartControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAccelerate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Reverse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReverse(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Steer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

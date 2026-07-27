@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     public event System.Action<float> OnSteer;
     public event System.Action OnAccelerateStarted;
     public event System.Action OnAccelerateEnded;
+    public event System.Action OnReverseStarted;
+    public event System.Action OnReverseEnded;
     public event System.Action OnDriftStarted;
     public event System.Action OnDriftEnded;
     public event System.Action OnToggleSlowMotion;
@@ -58,6 +60,11 @@ public class InputManager : MonoBehaviour
             case "Accelerate":
                 if (ctx.started) OnAccelerateStarted?.Invoke();
                 else if (ctx.canceled) OnAccelerateEnded?.Invoke();
+                break;
+
+            case "Reverse":
+                if (ctx.started) OnReverseStarted?.Invoke();
+                else if (ctx.canceled) OnReverseEnded?.Invoke();
                 break;
 
             case "Drift":

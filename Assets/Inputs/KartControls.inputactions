@@ -16,6 +16,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Reverse",
+                    "type": "Button",
+                    "id": "ffa3ddab-cb0f-42fc-905e-3c4ff9049cb9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Steer",
                     "type": "Value",
                     "id": "bd9d6cb2-9f70-4a11-83f0-f90059708864",
@@ -98,6 +107,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Drift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fd6f615-68c6-4a0d-a8c0-155939704ddf",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reverse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
